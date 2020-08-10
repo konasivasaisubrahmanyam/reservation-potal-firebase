@@ -1,0 +1,109 @@
+
+
+<html>
+ 
+
+		 <head>
+		 <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
+		 <script src="form1.js"></script>	 
+		
+		 </head>
+		 
+<body>
+	     <title>SALOON FORM</title>
+		 
+		 
+	     customer name<input id="namebox" type="text"></input> <br><br>
+		 Mobile NO <input id="mobilebox" type="text"></input> <br><br>
+		 Email Id<input id="emailid" type="text"></input> <br><br>
+		 Gender<input id="gender" type="text"></input> <br><br>
+		 <br><br>
+		  
+  <script>
+		 //crud operations
+		 var customerv,mobilev,emailv,genv;
+			   
+			   function Ready(){
+					customerv = document.getElementById('namebox').value;
+					mobilev = document.getElementById('mobilebox').value;
+					emailv = document.getElementById('emailidbox').value;
+					genv= document.getElementById('genderbox').value;	
+
+				}	
+				
+				
+			document.getElementById('insert').onclick=function(){
+			Ready();
+			firebase.database().ref('customer/'+mobilev).set({
+				customer name:customerv,
+				Mobile NO :mobilev,
+				Email Id:emailv,
+				Gender:genv
+			}};
+			}
+			
+			
+			document.getElementById('select').onclick=function(){
+			  Ready();
+				
+	        firebase.database().ref('customer/'+mobilev).on('value',function(snapshot){
+			
+			document.getElementById('namebox').value=snapshot.value().customer name;
+			document.getElementById('emailidbox').value=snapshot.value().Email Id;
+			document.getElementById('genderbox').value=snapshot.value().Gender;
+			});
+			}
+			
+			document.getElementById('update').onclick=function(){
+			Ready();
+			firebase.database().ref('customer/'+mobilev).update({
+				customer name:customerv,
+				Email Id:emailv,
+				Gender:genv
+			}};
+			}
+			
+			document.getElementById('delete').onclick=function(){
+			Ready();
+			firebase.database().ref('customer/'+mobilev).remove({
+				
+			}};
+			}
+			
+			</script>
+		 
+	
+  
+		 
+		 
+		 
+		 <button id="insert">INSERT</button>
+		 <button id="select">SELECT</button>
+		 <button id="update">UPDATE</button>
+		 <button id="delete">DELETE</button>
+		 <a href="new 1.html"><button>signIn</button></a>
+	
+		 
+
+				
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
